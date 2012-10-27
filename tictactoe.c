@@ -50,7 +50,7 @@ void playerTurn(char board[NUMROWS][NUMCOLS], int player);
 
 
 // Method to get a valid space to move to
-int getValidSpace();
+int getValidSpace(char board[NUMROWS][NUMCOLS]);
 
 
 int main(void)
@@ -152,6 +152,7 @@ void playerTurn(char board[NUMROWS][NUMCOLS], int player)
     int input;
     static int count = 1;
 
+
     if (count <= 2) // Give instructions on first call for each player
     {
         printf("\n\n"
@@ -178,7 +179,7 @@ void playerTurn(char board[NUMROWS][NUMCOLS], int player)
 
     printf("\n\nPlayer %d's turn to move.\nPlease enter a move: ", player);
 
-    input = getValidSpace();
+    input = getValidSpace(board);
 
 
     // Set char using pointer arithmetic to find the place
@@ -195,7 +196,7 @@ void playerTurn(char board[NUMROWS][NUMCOLS], int player)
 }
 
 // Method to get a valid space to move to
-int getValidSpace()
+int getValidSpace(char board[NUMROWS][NUMCOLS])
 {
     int input;
     int valid = 0;
@@ -204,13 +205,17 @@ int getValidSpace()
     {
         scanf("%d", &input);
 
-        if (input > 0 && input <= GRIDSPACES)
+        char currentVal = *(*board + input - 1);
+
+
+        if (input > 0 && input <= GRIDSPACES && currentVal == '-')
         {
             valid = 1;
         }
         else 
         {
-            printf("Input must be between 1 and %d.\n\n", GRIDSPACES);
+            printf("Input must be between 1 and %d.\n", GRIDSPACES);
+            printf("It must also be unoccupied.\n\n");
         }
     }
 
