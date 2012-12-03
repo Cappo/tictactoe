@@ -1,4 +1,4 @@
 Tic Tac Toe
 =========
 
-Tic Tac Toe game to do in my free time waiting for lab to begin.
+Fun little tic tac toe game in C.  Written while waiting for lab to begin. 
